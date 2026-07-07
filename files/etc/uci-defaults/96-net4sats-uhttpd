@@ -1,0 +1,24 @@
+#!/bin/sh
+# 96-net4sats-uhttpd — Create dedicated uhttpd instance for net4sats admin
+# Runs once on first boot after package install. Idempotent.
+
+if uci -q get uhttpd.net4sats >/dev/null 2>&1; then
+  # Already configured — check and update ports if needed
+  HAS_8090=$(uci -q get uhttpd.net4sats.listen_http | grep -c ":8090" 2>/dev/null || echo 0)
+  [ "$HAS_8090" -gt 0 ] && exit 0
+fi
+
+# Create fresh uhttpd entry
+uci set uhttpd.net4sats=uhttpd
+uci set uhttpd.net4sats.home='/www'
+uci set uhttpd.net4sats.ubus_prefix='/ubus'
+uci set uhttpd.net4sats.script_timeout='60'
+uci set uhttpd.net4sats.network_timeout='30'
+uci set uhttpd.net4sats.max_requests='3'
+uci set uhttpd.net4sats.tcp_keepalive='1'
+uci set uhttpd.net4sats.error_page='/net4sats/index.html'
+uci add_list uhttpd.net4sats.listen_http='0.0.0.0:8090'
+uci add_list uhttpd.net4sats.listen_http='[::]:8090'
+uci commit uhttpd
+
+exit 0
