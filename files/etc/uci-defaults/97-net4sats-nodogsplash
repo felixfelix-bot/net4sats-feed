@@ -17,6 +17,12 @@ if [ "$NEEDS_443" -eq 0 ]; then
   uci add_list nodogsplash.@nodogsplash[0].users_to_router='tcp:443'
 fi
 
+# Port 2051 (captive portal SPA) must be reachable through NDS
+NEEDS_2051=$(uci -q get nodogsplash.@nodogsplash[0].users_to_router | grep -c "2051" 2>/dev/null || echo 0)
+if [ "$NEEDS_2051" -eq 0 ]; then
+  uci add_list nodogsplash.@nodogsplash[0].users_to_router='allow tcp port 2051'
+fi
+
 uci commit nodogsplash
 
 exit 0
