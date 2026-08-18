@@ -22,7 +22,7 @@ define Package/net4sats
   SECTION:=net
   CATEGORY:=Network
   TITLE:=net4sats — one-command router setup
-  DEPENDS:=+tollgate-wrt +configurationwizzard +nodogsplash
+  DEPENDS:=+tollgate-wrt +configurationwizzard +nodogsplash +jq
   PKGARCH:=all
 endef
 
