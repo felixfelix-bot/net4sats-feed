@@ -1,13 +1,15 @@
 #!/bin/sh
 # install-net4sats.sh — Bootstrap net4sats on any OpenWrt router
-# Usage: curl -sL https://net4sats.com/install.sh | sh
+# Usage: see the banner in README.md — this path is SUPERSEDED.
+# The working install is: git clone https://github.com/net4sats/installer
 #
 # Downloads the net4sats meta-package and all dependencies,
 # then configures the router. Idempotent.
 
 set -e
 
-NET4SATS_FEED="https://blossom.net4sats.com/feed/net4sats"
+# SUPERSEDED: the old origin (blossom.net4sats.com) is NXDOMAIN and is not revived.
+NET4SATS_FEED=""
 PACKAGE="net4sats"
 
 echo "net4sats — Installing on OpenWrt..."

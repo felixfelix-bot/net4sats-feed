@@ -1,3 +1,20 @@
+> ## ⚠️ SUPERSEDED — use `net4sats/installer`
+>
+> This repository (the net4sats **feed**) has been superseded. TollGate packages are now
+> published by the upstream feed, and the net4sats install path is a thin branded shell
+> that hands off to the upstream installer:
+>
+> ```sh
+> git clone https://github.com/net4sats/installer
+> cd installer && sh install.sh
+> ```
+>
+> The feed origin this repo referenced (`blossom.net4sats.com`) is **NXDOMAIN** and has
+> been removed below rather than resurrected. The host `net4sats.com/install.sh` also
+> **404s**; the working path is the repo above.
+>
+> This repo is retained for reference and will be archived.
+
 # net4sats-feed
 
 OpenWrt package feed for net4sats. One command to turn any supported router into a net4sats hotspot.
@@ -6,18 +23,18 @@ OpenWrt package feed for net4sats. One command to turn any supported router into
 
 ```bash
 # On your OpenWrt router:
-curl -sL https://net4sats.com/install.sh | sh
+git clone https://github.com/net4sats/installer && cd installer && sh install.sh
 ```
 
 Or add the feed manually and install:
 
 ```bash
 # apk (OpenWrt 25.12+)
-echo "https://blossom.net4sats.com/feed/net4sats" >> /etc/apk/repositories
+echo "<SUPERSEDED — see the banner above; use the upstream feed>" >> /etc/apk/repositories
 apk update && apk add net4sats
 
 # opkg (OpenWrt 24.10)
-echo "src/gz net4sats https://blossom.net4sats.com/feed/net4sats" >> /etc/opkg/customfeeds.conf
+echo "<SUPERSEDED — see the banner above; use the upstream feed>" >> /etc/opkg/customfeeds.conf
 opkg update && opkg install net4sats
 ```
 

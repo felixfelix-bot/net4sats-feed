@@ -3,7 +3,8 @@
 # Runs once on first boot after package install
 # Idempotent: safe to run multiple times
 
-FEED_URL="https://blossom.net4sats.com/feed"
+# SUPERSEDED: the old origin is NXDOMAIN and is not revived. See README.md.
+FEED_URL=""
 FEED_LINE="$FEED_URL/net4sats"
 
 if [ -f /etc/apk/repositories ]; then
